@@ -43,3 +43,4 @@ c:\Users\sh0tyz\documents\visual studio 2015\Projects\RipBOT\RipBOT\bin\Debug\lo
 c:\Users\sh0tyz\documents\visual studio 2015\Projects\RipBOT\RipBOT\bin\Debug\Zlib.Portable.xml
 c:\Users\sh0tyz\documents\visual studio 2015\Projects\RipBOT\RipBOT\bin\Debug\Json.dll
 c:\Users\sh0tyz\documents\visual studio 2015\Projects\RipBOT\RipBOT\bin\Debug\Json.pdb
+C:\Users\Otis\Documents\Visual Studio 2015\Projects\RipBOT\RipBOT\bin\Debug\RipBOT.exe.config
