@@ -20,6 +20,7 @@ namespace RipBOT
         private string connect = ConfigurationManager.AppSettings["connectionToken"];
         private CommandService cs;
         private DiscordClient _bot;
+        private static Random _rand = new Random();
 
         static void Main(string[] args)
         {
@@ -176,7 +177,52 @@ namespace RipBOT
                         await e.Channel.SendMessage(e.User.Mention + ", http://lmgtfy.com/?q=" + search.Replace(" ", "%20"));
                     }
                 });
-            
+
+
+           cs.CreateCommand("roll")
+               .Alias(new string[] {"r"})
+               .Description("Rolls a random number between 1 and said number, 1-100 being default")
+               .Parameter("number", ParameterType.Unparsed)
+               .Do(async (e) =>
+           {
+               // Basic pseudo random number generator to test the syntax working with bot and git hub commits.
+               // Later update will use http://random.org's API to get a true random number instead of pseudo.
+
+               int userNum;
+
+
+               //If a parameter was given
+               if (e.GetArg("number") != "") {
+
+                   //Try to parse that parameter as an int 
+                   if (int.TryParse(e.GetArg("number"), out userNum)) {
+
+                       //Roll a number between 1 and the user specified bound
+                       await e.Channel.SendMessage(e.User.Mention + ", You've rolled " + _rand.Next(1, userNum + 1) + ", out of " + userNum + ".");
+
+                   }
+
+                   // If it couldn't parse the given parameter as an it let the user know to check their input and try again.
+                   else {
+
+                       await e.Channel.SendMessage(e.User.Mention + ", You've appeared to have entered an input that is not a number please check your input and try your command again.");
+
+                   }
+
+               }
+
+               // If no parameter exists simply roll a number from 1-100
+               else {
+
+                   await e.Channel.SendMessage(e.User.Mention + ", You've rolled " + _rand.Next(101) + ", out of 100.");
+
+               }
+
+               
+
+
+           });
+
             cs.CreateCommand("ow")
                 .Description("Gets overwatch stats for a player")
                 .Parameter("battleNet", ParameterType.Required)
